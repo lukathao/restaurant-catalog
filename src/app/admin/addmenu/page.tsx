@@ -13,6 +13,9 @@ const AddMenu = () => {
         <p>
           <Link href="/admin/addmenu/2">Vuam</Link>
         </p>
+        <p>
+          <Link href="/admin/addrestaurant">Add Restaurant</Link>
+        </p>
       </div>
     </>
   )

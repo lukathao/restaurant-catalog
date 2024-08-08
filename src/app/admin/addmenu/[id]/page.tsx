@@ -8,7 +8,7 @@ const AddMenuItem = () => {
       </div>
       <div>
         <form>
-          <div id="itemType" className="admin-menu p-5">
+          <div id="itemType" className="p-5">
             <label>Item Type</label><br />
             <select className="text-black border-2 border-black">
               <option value="0">Appetizer</option>
@@ -19,19 +19,19 @@ const AddMenuItem = () => {
               <option value="5">Other</option>
             </select>
           </div>
-          <div id="itemName" className="admin-menu p-5">
+          <div id="itemName" className="p-5">
             <label>Item Name</label><br />
-            <input type="text" name="menuItem" defaultValue="Menu Item" className="w-96 text-black border-black border-2" />
+            <input type="text" name="menuItem" className="w-96 text-black border-black border-2" />
           </div>
-          <div id="itemDescription" className="admin-menu p-5">
+          <div id="itemDescription" className="p-5">
             <label>Description</label><br />
-            <textarea rows="3" name="menuDescription" defaultValue="Description" className="w-96 block text-black border-black border-2" />
+            <textarea rows="3" name="menuDescription" className="w-96 block text-black border-black border-2" />
           </div>
-          <div id="price" className="admin-menu p-5">
+          <div id="price" className="p-5">
             <label>Price</label><br />
-            <input type="text" name="price" defaultValue="Price" className="text-black border-black border-2" />
+            <input type="text" name="price" className="text-black border-black border-2" />
           </div>
-          <div id="submitNewMenuItem" className="admin-menu p-5">
+          <div id="submitNewMenuItem" className="p-5">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-black">Submit</button>
           </div>
         </form>
