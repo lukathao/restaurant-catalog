@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 
@@ -20,6 +20,8 @@ const AddRestaurant = () => {
   const { register, handleSubmit, formState: {errors, isSubmitting}, setValue, watch, reset } = useForm<RestaurantData>({
     reValidateMode: "onSubmit",
   });
+  const [ loading, setLoading] = useState(false);
+
   const watchRestaurantOwner = watch("restaurantOwner");
   const watchCity = watch("city");
   useEffect(() => {
@@ -36,9 +38,25 @@ const AddRestaurant = () => {
   }, [watchRestaurantOwner, watchCity, setValue]);
 
   const submit= async (restaurantType : RestaurantData) => {
-    console.log(restaurantType);
-    await new Promise(res => setTimeout(res, 5000));
-    reset();
+    console.log("Submitting Data");
+    try {
+      const response = await fetch('/api/restaurants', {
+        headers: {
+          Accept: "application/json",
+          method: "POST",
+        },
+      });
+      if (response) {
+        const data = await response.json();
+        console.log("Submitted Data");
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      // reset();
+    }
   };
 
   return (
