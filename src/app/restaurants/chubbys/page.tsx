@@ -5,7 +5,7 @@ const Chubbys = () => {
     <>
       <div>
         <div>
-          <h1>Chubby's Asian Fusion Cuisine</h1>
+          <h1>Chubby&apos;s Asian Fusion Cuisine</h1>
           <h2>Menu</h2>
           <div>
             <div id="appetiziers">

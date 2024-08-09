@@ -43,14 +43,15 @@ const AddRestaurant = () => {
       const response = await fetch('/api/restaurants', {
         headers: {
           Accept: "application/json",
-          method: "POST",
         },
+        method: "POST",
+        body: JSON.stringify(restaurantType),
       });
       if (response) {
         const data = await response.json();
         console.log("Submitted Data");
         console.log(data);
-      }
+      };
     } catch (error) {
       console.log(error);
     } finally {

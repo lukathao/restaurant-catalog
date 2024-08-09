@@ -25,7 +25,7 @@ const AddMenuItem = () => {
           </div>
           <div id="itemDescription" className="p-5">
             <label>Description</label><br />
-            <textarea rows="3" name="menuDescription" className="w-96 block text-black border-black border-2" />
+            <textarea rows={3} name="menuDescription" className="w-96 block text-black border-black border-2"></textarea>
           </div>
           <div id="price" className="p-5">
             <label>Price</label><br />

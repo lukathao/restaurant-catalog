@@ -12,6 +12,10 @@ export async function POST(request: NextRequest) {
   const data = await request.json();
   return NextResponse.json({
     data,
+    headers: {
+      "Content-Type" : "application/json",
+    },
+    status: 201,
   });
   //CREATE A RESTAURANT
 }
