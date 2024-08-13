@@ -20,7 +20,15 @@ const Restaurants = async () => {
         {
           restaurants?.map((restaurant: Restaurant) =>(
             <>
-              <Link href={`/admin/restaurants/${restaurant.id}`}>
+              <Link href={{
+                pathname: `/admin/restaurants/${restaurant.business_name}`,
+                query: {
+                  name: restaurant.business_name,
+                  id: restaurant.id,
+                },
+              }
+
+              }>
                 <div className="text-black border-black border-2">
                   <div>
                     {restaurant.business_name}

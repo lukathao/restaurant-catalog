@@ -28,7 +28,7 @@ export async function getRestaurants() {
   }
 }
 
-export async function getRestaurant(id: String) {
+export async function getRestaurant(id: string) {
   const pool = await getNeonDbPool();
   const sql = sqlstring.format(
     `select * from restaurants

@@ -1,29 +1,31 @@
 "use client";
 
-import { getRestaurant } from '@/app/service/restaurant.service'
+import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 
-type MenuData = {
-  restaurantId: String,
-  itemName: String,
-  itemDescription: String,
-  itemType: String,
-  itemPrice: String,
-}
+const RestaurantMenuAdmin = async () => {
+  type MenuData = {
+    restaurantId: string,
+    itemName: string,
+    itemDescription: string,
+    itemType: string,
+    itemPrice: string,
+  }
 
-const RestaurantAdmin = async ({params}:{params: {id : string}}) => {
-  const restaurant = await getRestaurant(params.id);
   const { register, handleSubmit, formState: {errors, isSubmitting}, setValue, watch, reset } = useForm<MenuData>({
     reValidateMode: "onSubmit",
   });
   const [ loading, setLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const restaurantId = searchParams.get('id');
+  const restaurantName = searchParams.get('name');
 
   const submit= async (menuData : MenuData) => {
-    menuData.restaurantId = params.id;
+    menuData.restaurantId = restaurantId == null ? "null" : restaurantId;
     try {
-      const response = await fetch('/api/restaurants', {
+      const response = await fetch('/api/menu/item', {
         headers: {
           Accept: "application/json",
         },
@@ -48,8 +50,7 @@ const RestaurantAdmin = async ({params}:{params: {id : string}}) => {
       <div>
         <div>
           <div>
-            <h1>{restaurant["business_name"]}</h1>
-            <h2>{restaurant["business_owner"]}</h2>
+            <h1>{restaurantName}</h1>
           </div>
           <div>
             <form 
@@ -112,4 +113,4 @@ const RestaurantAdmin = async ({params}:{params: {id : string}}) => {
   )
 }
 
-export default RestaurantAdmin
+export default RestaurantMenuAdmin

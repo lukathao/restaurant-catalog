@@ -5,13 +5,13 @@ import { useForm } from 'react-hook-form';
 
 
 type RestaurantData = {
-  restaurantName: String,
-  restaurantOwner: String,
-  restaurantAddress: String,
-  street: String, 
-  city: String,
-  state: String, 
-  zipCode: String,
+  restaurantName: string,
+  restaurantOwner: string,
+  restaurantAddress: string,
+  street: string, 
+  city: string,
+  state: string, 
+  zipCode: string,
 }
 
 const AddRestaurant = () => {
