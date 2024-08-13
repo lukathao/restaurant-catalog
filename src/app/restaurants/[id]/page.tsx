@@ -1,11 +1,20 @@
+import { getRestaurant } from '@/app/service/restaurant.service'
 import React from 'react'
 
-const Chubbys = () => {
+const Restaurant = ({params}:{params: {id : string}}) => {
+  console.log("loading restaurant info");
+  console.log(params.id);
+  const restaurant = getRestaurant(params.id);
+
   return (
     <>
       <div>
         <div>
-          <h1>Chubby&apos;s Asian Fusion Cuisine</h1>
+          <div>
+            Restaurant ID: {params.id}
+            {/* <h1>{restaurant.business_name}</h1>
+            <h2>{restaurant.business_owner}</h2> */}
+          </div>
           <h2>Menu</h2>
           <div>
             <div id="appetiziers">
@@ -47,4 +56,4 @@ const Chubbys = () => {
   )
 }
 
-export default Chubbys
+export default Restaurant

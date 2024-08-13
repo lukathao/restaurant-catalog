@@ -1,23 +1,45 @@
+"use server";
+import { Restaurant } from "@/app/classes/Restaurant";
+import { saveRestaurant } from "@/app/service/restaurant.service";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  console.log("inside get request");
   return NextResponse.json({
     hello: "world",
   });
 }
 
 export async function POST(request: NextRequest) {
-  console.log("inside post request");
-  const data = await request.json();
-  return NextResponse.json({
-    data,
-    headers: {
-      "Content-Type" : "application/json",
-    },
-    status: 201,
-  });
-  //CREATE A RESTAURANT
+  try {
+    const data = await request.json();
+    const restaurant = new Restaurant(
+      "",
+      data["restaurantName"],
+      data["restaurantOwner"],
+      data["street"],
+      data["city"],
+      data["state"],
+      data["zipCode"],
+    );
+    const res = await saveRestaurant(restaurant);
+    // TODO null check
+    return NextResponse.json({
+      message: "Saved Restaurant",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      status: 201,
+    });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({
+      message: "Error attempting to create restaurant.",
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      status: 500,
+    });
+  } 
 }
 
 export async function PUT() {

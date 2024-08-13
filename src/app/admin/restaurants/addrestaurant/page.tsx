@@ -8,7 +8,6 @@ type RestaurantData = {
   restaurantName: String,
   restaurantOwner: String,
   restaurantAddress: String,
-  isActive: Boolean,
   street: String, 
   city: String,
   state: String, 
@@ -37,7 +36,7 @@ const AddRestaurant = () => {
     }
   }, [watchRestaurantOwner, watchCity, setValue]);
 
-  const submit= async (restaurantType : RestaurantData) => {
+  const submit= async (restaurantData : RestaurantData) => {
     console.log("Submitting Data");
     try {
       const response = await fetch('/api/restaurants', {
@@ -45,7 +44,7 @@ const AddRestaurant = () => {
           Accept: "application/json",
         },
         method: "POST",
-        body: JSON.stringify(restaurantType),
+        body: JSON.stringify(restaurantData),
       });
       if (response) {
         const data = await response.json();
@@ -145,19 +144,6 @@ const AddRestaurant = () => {
                 }})}
               />
               {errors.zipCode && (<p className="text-red-500">{errors.zipCode.message}</p>)}
-          </div>
-
-          <div id="isActive" className="flex flex-col">
-            <fieldset>
-              <legend>Active</legend>
-              <div>
-                <input type="radio" {...register("isActive", {required: "Please select a choice", minLength: 1})} value="True" />Yes
-              </div>
-              <div>
-                <input type="radio" {...register("isActive", {required: "Please select a choice", minLength: 1})} value="False" />No
-              </div>
-            </fieldset>
-            {errors.isActive && (<p className="text-red-500">{errors.isActive.message}</p>)}
           </div>
           <div>
             <button 

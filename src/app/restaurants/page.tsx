@@ -1,7 +1,8 @@
-import { Restaurant } from '@/app/classes/Restaurant'
-import { getRestaurants } from '@/app/service/restaurant.service';
-import Link from 'next/link'
+"use server";
 import React from 'react'
+import { Restaurant } from '../classes/Restaurant';
+import Link from 'next/link';
+import { getRestaurants } from '../service/restaurant.service';
 
 
 const fetchRestaurants = async () => {
@@ -20,7 +21,7 @@ const Restaurants = async () => {
         {
           restaurants?.map((restaurant: Restaurant) =>(
             <>
-              <Link href={`/admin/restaurants/${restaurant.id}`}>
+              <Link href={`/restaurants/${restaurant.id}`}>
                 <div className="text-black border-black border-2">
                   <div>
                     {restaurant.business_name}
@@ -29,6 +30,7 @@ const Restaurants = async () => {
                     {restaurant.business_owner}
                   </div>
                 </div>
+                
               </Link>
             </>
           ))
