@@ -26,9 +26,7 @@ const Restaurants = async () => {
                   name: restaurant.business_name,
                   id: restaurant.id,
                 },
-              }
-
-              }>
+              }}>
                 <div className="text-black border-black border-2">
                   <div>
                     {restaurant.business_name}
