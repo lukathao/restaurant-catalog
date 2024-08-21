@@ -1,8 +1,11 @@
+"use server";
+
 import { Menu } from "@/app/classes/Menu";
 import { saveMenuItem } from "@/app/service/menu.service";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+  "use server";
   try {
     const data = await request.json();
     const restaurant = new Menu(
