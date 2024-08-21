@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   "use server";
   try {
     const data = await request.json();
-    const restaurant = new Menu(
+    const menuItem = new Menu(
       "",
       data["restaurantId"],
       data["itemName"],
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       data["itemPrice"],
     );
 
-    const res = await saveMenuItem(restaurant);
+    const res = await saveMenuItem(menuItem);
     // TODO null check
     return NextResponse.json({
       message: "Saved Restaurant",

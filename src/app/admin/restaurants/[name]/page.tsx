@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 
-const RestaurantMenuAdmin = async () => {
+const RestaurantMenuAdmin = () => {
   type MenuData = {
     restaurantId: string,
     itemName: string,
@@ -41,7 +41,7 @@ const RestaurantMenuAdmin = async () => {
       console.log(error);
     } finally {
       setLoading(false);
-      // reset();
+      reset();
     }
   };
   
@@ -85,12 +85,24 @@ const RestaurantMenuAdmin = async () => {
                   />
                   {errors.itemDescription && (<p className="text-red-500">{errors.itemDescription.message}</p>)}
               </div>
+              <div className="w-100 flex flex-col">
+                <label>Type</label>
+                <select {...register("itemType", {required: "Please select a valid item type", minLength: 2})}>
+                  <option>Appetizer</option>
+                  <option>Entree</option>
+                  <option>Drink</option>
+                  <option>A la carte</option>
+                  <option>Others</option>
+                </select>
+                {errors.itemType && (<p className="text-red-500">{errors.itemType.message}</p>)}
+              </div>
               <div className="flex flex-col">
                 <label>Price</label>
                 <input 
                   type="number" 
                   className="w-96 text-black border-black border-2"
                   min={0}
+                  step={"any"}
                   {...register("itemPrice", {
                     required: "Invalid price"
                   })}

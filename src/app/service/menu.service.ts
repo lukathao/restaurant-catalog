@@ -32,9 +32,9 @@ export async function getRestaurantMenu(id: string) {
 export async function saveMenuItem(menu: Menu) {
   const pool = await getNeonDbPool();
   const sql = sqlstring.format(
-    `insert into menus (id, business_id, item_name, item_description, item_type, price, is_active, created_at, updated_at)
+    `insert into menus (id, business_id, item_name, item_description, item_type, item_price, is_active, created_at, updated_at)
     values (gen_random_uuid (), ?, ?, ?, ?, ?, true, now(), NULL)`
-  , [menu.business_id, menu.item_name, menu.item_description, menu.item_type, menu.price])
+  , [menu.business_id, menu.item_name, menu.item_description, menu.item_type, menu.price]);
   try {
     console.log(sql);
     pool.connect();
