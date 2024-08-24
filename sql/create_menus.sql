@@ -5,6 +5,7 @@ create table menus (
   item_description varchar(500),
   item_type varchar(50),
   item_price float,
+  file_url varchar(500),
   is_active boolean,
   created_at timestamp,
   updated_at timestamp

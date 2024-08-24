@@ -15,10 +15,10 @@ export async function POST(request: NextRequest) {
       data["itemDescription"],
       data["itemType"],
       data["itemPrice"],
+      data["itemImage"],
     );
 
     const res = await saveMenuItem(menuItem);
-    // TODO null check
     return NextResponse.json({
       message: "Saved Restaurant",
       headers: {

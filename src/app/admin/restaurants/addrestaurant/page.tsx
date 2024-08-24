@@ -55,7 +55,7 @@ const AddRestaurant = () => {
       console.log(error);
     } finally {
       setLoading(false);
-      // reset();
+      reset();
     }
   };
 

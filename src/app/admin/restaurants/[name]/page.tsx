@@ -1,8 +1,10 @@
 "use client";
 
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import { NextResponse } from 'next/server';
+import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import Image from "next/image";
 
 
 const RestaurantMenuAdmin = () => {
@@ -12,6 +14,7 @@ const RestaurantMenuAdmin = () => {
     itemDescription: string,
     itemType: string,
     itemPrice: string,
+    itemImage: File,
   }
 
   const { register, handleSubmit, formState: {errors, isSubmitting}, setValue, watch, reset } = useForm<MenuData>({
@@ -21,9 +24,26 @@ const RestaurantMenuAdmin = () => {
   const searchParams = useSearchParams();
   const restaurantId = searchParams.get('id');
   const restaurantName = searchParams.get('name');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const handleFileUploadChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files != null) {
+      console.log(event.target.files)
+      const file = event.target.files[0] == null? null : event.target.files[0];
+      if (!file) {
+        setSelectedFile(file);
+      }
+    }
+  }
 
   const submit= async (menuData : MenuData) => {
     menuData.restaurantId = restaurantId == null ? "null" : restaurantId;
+    console.log("selected file");
+    console.log(selectedFile);
+    if (!selectedFile) {
+      // menuData.itemImage = selectedFile;
+    }
     try {
       const response = await fetch('/api/menu/item', {
         headers: {
@@ -109,11 +129,22 @@ const RestaurantMenuAdmin = () => {
                   />
                   {errors.itemPrice && (<p className="text-red-500">{errors.itemPrice.message}</p>)}
               </div>
+              <div className="flex flex-col">
+                <label>Image</label>
+                <input 
+                  type="file" 
+                  className="w-96 text-black border-black border-2"
+                  {...register("itemImage", {
+                    required: "Invalid image",
+                    onChange: handleFileUploadChange,
+                  })}
+                  />
+                  {errors.itemImage && (<p className="text-red-500">{errors.itemImage.message}</p>)}
+              </div>
               <div>
                 <button 
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-black disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isSubmitting}
-                >
+                  disabled={isSubmitting}>
                   Submit
                 </button>
               </div>
