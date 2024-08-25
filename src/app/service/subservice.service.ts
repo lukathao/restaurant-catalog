@@ -176,6 +176,7 @@ function getNumberOfActiveDays(user: User): number {
   //case 8: user deactivated after the first of the month, and reactivated before or on today
   //return days from first of month to deactivated day and days from activated day until today
   if((user.deactivatedOn!=null) &&(user.deactivatedOn>firstOfMonth)&&(user.activatedOn<=today)&&(user.deactivatedOn<user.activatedOn)) {
+    console.log("user: " + user.id + " is hitting case 8");
     return daysInBetween(firstOfMonth, user.deactivatedOn) + daysInBetween(user.activatedOn, today);
   }
   return 0;

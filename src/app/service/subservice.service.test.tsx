@@ -53,7 +53,6 @@ describe("Subscription Test", () => {
     let users: User[] = [];
     const user = getUserCase4();
     users.push(user);
-    console.log(user);
     const testCost = monthlyCharge("082024", getTestSubscription(), users);
     const pricePerDay = getPricePerDay();
     let activeDays = 0;
