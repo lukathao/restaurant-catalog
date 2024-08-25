@@ -1,10 +1,10 @@
 "use server";
 
-import { getMonthlyTotal } from "@/app/service/subscription.servce";
+import { createTestWithActiveUsers, createTestWithNoActiveUsers } from "@/app/service/subservice.service";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const total = getMonthlyTotal();
+  const total = createTestWithNoActiveUsers();
   return NextResponse.json({
     total: total,
   });
