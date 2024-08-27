@@ -31,7 +31,7 @@ export async function getRestaurantMenu(id: string) {
 }
 
 export async function uploadImage(file: File) {
-  return "imageUrl";
+  return "ymtadjiozuutouexbw4c";
 }
 
 export async function saveMenuItem(menu: Menu) {
@@ -46,6 +46,31 @@ export async function saveMenuItem(menu: Menu) {
     pool.connect();
     const res = await pool.query(sql);
     return res;    
+  } catch(error) {
+    console.log(error);
+    throw error;
+  } finally {
+    pool.end();
+  }
+}
+
+export async function getMenuItems(id: String) {
+  const pool = await getNeonDbPool();
+  const sql = sqlstring.format(
+    `select menus.*, restaurants.business_name
+    from menus
+    left join restaurants
+    on restaurants.id::text = menus.business_id
+    where menus.business_id = ?`
+  , [id]);
+  try {
+    console.log(sql);
+    pool.connect();
+    const { rows, rowCount } = await pool.query(sql);
+    if (rowCount == null || rowCount == 0) {
+      return null;
+    }
+    return rows;    
   } catch(error) {
     console.log(error);
     throw error;

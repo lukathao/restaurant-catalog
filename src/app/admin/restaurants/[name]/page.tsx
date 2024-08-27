@@ -2,9 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { NextResponse } from 'next/server';
-import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from 'react'
+import React, { ChangeEvent, InputHTMLAttributes, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Image from "next/image";
 
 
 const RestaurantMenuAdmin = () => {
@@ -39,11 +38,6 @@ const RestaurantMenuAdmin = () => {
 
   const submit= async (menuData : MenuData) => {
     menuData.restaurantId = restaurantId == null ? "null" : restaurantId;
-    console.log("selected file");
-    console.log(selectedFile);
-    if (!selectedFile) {
-      // menuData.itemImage = selectedFile;
-    }
     try {
       const response = await fetch('/api/menu/item', {
         headers: {
