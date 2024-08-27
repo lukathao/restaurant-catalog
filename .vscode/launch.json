@@ -5,11 +5,7 @@
       "name": "Next.js: debug server-side",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npm run dev",
-      "resolveSourceMapLocations": [
-        "${workspaceFolder}/",
-        "!/node_modules/**"
-      ],
+      "command": "npm run dev"
     },
     {
       "name": "Next.js: debug client-side",
@@ -19,14 +15,18 @@
     },
     {
       "name": "Next.js: debug full stack",
-      "type": "node-terminal",
+      "type": "node",
       "request": "launch",
-      "command": "npm run dev",
+      "program": "${workspaceFolder}/node_modules/.bin/next",
+      "runtimeArgs": ["--inspect"],
+      "skipFiles": ["<node_internals>/**"],
       "serverReadyAction": {
+        "action": "debugWithEdge",
+        "killOnServerStop": true,
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
-        "action": "debugWithChrome"
+        "webRoot": "${workspaceFolder}"
       }
-    },
+    }
   ]
 }

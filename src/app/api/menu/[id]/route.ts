@@ -6,6 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextApiRequest, context: { params: { id: string } }) {
+  console.log("getting your items");
   const { id } = context.params;
   const menuItems = await getMenuItems(id);
   return NextResponse.json({
