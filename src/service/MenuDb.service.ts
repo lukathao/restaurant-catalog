@@ -1,4 +1,4 @@
-"use server";
+'use server';
 
 import { Pool } from "@neondatabase/serverless";
 import sqlstring from "sqlstring";
@@ -55,6 +55,8 @@ export async function saveMenuItem(menu: Menu) {
 }
 
 export async function getMenuItems(id: String) {
+  'use server'
+  console.log("getting items in saveMenu");
   const pool = await getNeonDbPool();
   const sql = sqlstring.format(
     `select menus.*, restaurants.business_name
@@ -70,7 +72,7 @@ export async function getMenuItems(id: String) {
     if (rowCount == null || rowCount == 0) {
       return null;
     }
-    return rows;    
+    return rows[0];    
   } catch(error) {
     console.log(error);
     throw error;

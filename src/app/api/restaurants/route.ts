@@ -1,5 +1,5 @@
 "use server";
-import { Restaurant } from "@/app/classes/Restaurant";
+import { Restaurant } from "@/classes/Restaurant";
 import { saveRestaurant } from "@/app/service/restaurant.service";
 import { NextRequest, NextResponse } from "next/server";
 

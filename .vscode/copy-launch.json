@@ -6,6 +6,10 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/",
+        "!/node_modules/**"
+      ],
     },
     {
       "name": "Next.js: debug client-side",
@@ -21,14 +25,14 @@
       "runtimeArgs": ["--inspect"],
       "skipFiles": ["<node_internals>/**"],
       "serverReadyAction": {
-        "action": "debugWithEdge",
+        "action": "debugWithChrome",
         "killOnServerStop": true,
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
-        "webRoot": "${workspaceFolder}/src"
+        "webRoot": "${workspaceFolder}/restaurant-catalog/src/"
       },
       "resolveSourceMapLocations": [
-        "${workspaceFolder}/src",
+        "${workspaceFolder}/",
         "!/node_modules/**"
       ],
     }

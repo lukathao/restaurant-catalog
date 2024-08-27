@@ -1,6 +1,6 @@
 "use server";
 import React from 'react'
-import { Restaurant } from '../classes/Restaurant';
+import { Restaurant } from '../../classes/Restaurant';
 import Link from 'next/link';
 import { getRestaurants } from '../service/restaurant.service';
 

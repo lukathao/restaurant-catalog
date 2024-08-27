@@ -1,4 +1,4 @@
-import { Restaurant } from '@/app/classes/Restaurant'
+import { Restaurant } from '@/classes/Restaurant'
 import { getRestaurants } from '@/app/service/restaurant.service';
 import Link from 'next/link'
 import React from 'react'
